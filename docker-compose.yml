@@ -1,15 +1,5 @@
 version: '3.8'
 services:
-  backend:
-    build:
-      context: ./backend/
-      dockerfile: Dockerfile
-    ports:
-      - 8080:8080
-    volumes:
-      - ./backend:/app
-    depends_on:
-      - db
   frontend:
     build:
       context: ./frontend/
@@ -18,18 +8,3 @@ services:
       - ./frontend:/app
     ports:
       - 3000:3000
-  db:
-    image: 'postgres:15-alpine'
-    ports:
-      - '5432:5432'
-    environment:
-      - POSTGRES_PASSWORD=go_next_tennis
-      - POSTGRES_DB=go_next_tennis
-      - POSTGRES_USER=negi
-      - TZ=Asia/Tokyo
-      - PGTZ=Asia/Tokyo
-    volumes:
-      - db_data:/var/lib/postgresql/data
-
-volumes:
-  db_data:
